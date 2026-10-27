@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Petualangan Kalor – Quiz IPA Kelas 7</title>
+<style>
+:root{--bg1:#ffe29f;--bg2:#ffa99f;--bg3:#a1c4fd;--card:#fff;--tx:#25203a;--mu:#6b6785;--bd:#e4def7;--pu:#7048e8;--ok:#2f9e44;--oks:#d3f9d8;--no:#e03131;--nos:#ffe3e3;--yl:#fff3bf;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#2b1f4d;--bg2:#4a2350;--bg3:#1b3a6b;--card:#241f3a;--tx:#f3f0ff;--mu:#b3acd1;--bd:#3d3560;--pu:#b197fc;--ok:#8ce99a;--oks:#173a22;--no:#ff8787;--nos:#411c1c;--yl:#4a3f12}}
+:root[data-theme="dark"]{--bg1:#2b1f4d;--bg2:#4a2350;--bg3:#1b3a6b;--card:#241f3a;--tx:#f3f0ff;--mu:#b3acd1;--bd:#3d3560;--pu:#b197fc;--ok:#8ce99a;--oks:#173a22;--no:#ff8787;--nos:#411c1c;--yl:#4a3f12}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));background-attachment:fixed;color:var(--tx);font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;line-height:1.5}
+.w{max-width:640px;margin:0 auto;padding:16px}
+.c{background:var(--card);border-radius:22px;padding:22px;margin-bottom:14px;box-shadow:0 8px 24px rgba(60,30,120,.18);animation:pop .35s ease}
+@keyframes pop{from{transform:translateY(12px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes bounce{50%{transform:scale(1.12)}}
+h1{font-size:1.6rem;margin:0 0 6px;text-align:center}
+.big{font-size:3.2rem;text-align:center;animation:bounce 1.6s infinite}
+.mu{color:var(--mu);font-size:.92rem;text-align:center}
+input{width:100%;font:inherit;padding:13px 14px;border:3px solid var(--bd);border-radius:14px;background:var(--card);color:var(--tx);margin-top:6px}
+input:focus{outline:none;border-color:var(--pu)}
+.err{color:var(--no);font-weight:600;font-size:.9rem;min-height:1.3em;margin-top:6px}
+.btn{width:100%;margin-top:14px;padding:14px;font:inherit;font-weight:800;font-size:1.05rem;color:#fff;border:0;border-radius:14px;cursor:pointer;background:linear-gradient(90deg,#7048e8,#f06595);box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.top{display:flex;justify-content:space-between;align-items:center;font-weight:700;gap:8px;flex-wrap:wrap}
+.chip{background:var(--yl);padding:4px 12px;border-radius:20px;font-size:.9rem}
+.bar{height:12px;background:var(--bd);border-radius:10px;overflow:hidden;margin:10px 0 14px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#fcc419,#f06595,#7048e8);border-radius:10px;transition:width .4s}
+.data{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}
+.data div{background:var(--bd);border-radius:12px;padding:8px 10px;font-size:.92rem}
+.data b{display:block;font-size:1.02rem}
+.opt{display:block;width:100%;text-align:left;font:inherit;font-weight:600;padding:13px 14px;margin-top:10px;border-radius:14px;border:3px solid transparent;color:var(--tx);cursor:pointer}
+.o0{background:#d0ebff}.o1{background:#d3f9d8}.o2{background:#fff3bf}.o3{background:#ffdeeb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .o0{background:#173a5c}:root:not([data-theme="light"]) .o1{background:#173a22}:root:not([data-theme="light"]) .o2{background:#4a3f12}:root:not([data-theme="light"]) .o3{background:#4a1d33}}
+:root[data-theme="dark"] .o0{background:#173a5c}:root[data-theme="dark"] .o1{background:#173a22}:root[data-theme="dark"] .o2{background:#4a3f12}:root[data-theme="dark"] .o3{background:#4a1d33}
+.opt:hover:not(:disabled){border-color:var(--pu)}
+.opt.good{border-color:var(--ok);background:var(--oks)}
+.opt.bad{border-color:var(--no);background:var(--nos);animation:shake .4s}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;padding:12px 14px;border-radius:14px;font-size:.93rem}
+.fb.g{background:var(--oks)}.fb.r{background:var(--nos)}
+.score{font-size:4rem;font-weight:900;text-align:center;background:linear-gradient(90deg,#f76707,#e64980,#7048e8);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0;text-align:center}
+.stats div{background:var(--bd);border-radius:14px;padding:10px 4px;font-size:.85rem}
+.stats b{display:block;font-size:1.3rem}
+.li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--bd);font-size:.92rem}
+.li:last-child{border:0}
+.ref{font-size:.82rem;color:var(--mu);text-align:center;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="w" id="app"></div>
+<script>
+// [emoji, benda, massa teks, massa, c, suhu awal, suhu akhir]
+var D=[
+["💧","Air","2",2,4200,20,30],
+["🔩","Besi","3",3,450,25,65],
+["🥫","Aluminium","0,5",0.5,900,30,70],
+["🔌","Tembaga","2",2,390,20,70],
+["🍳","Minyak goreng","1,5",1.5,2000,20,60],
+["🥛","Air","0,25",0.25,4200,20,80],
+["🎺","Kuningan","4",4,380,30,80],
+["🛁","Air mandi","3",3,4200,80,60],
+["🥈","Perak","0,2",0.2,230,20,120],
+["🍵","Air teh","0,4",0.4,4200,90,30]
+];
+var KEY="petualangan_kalor10:",app=document.getElementById("app"),S=null,LET=["A","B","C","D"];
+function f(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,".")}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function calc(d){var dt=Math.abs(d[6]-d[5]),q=d[3]*d[4]*dt;return{dt:dt,q:q,cool:d[6]<d[5]}}
+function opts(d){var r=calc(d),w=[d[3]*d[4]*d[6],r.q*10,r.q/10];return shuf([r.q].concat(w))}
+function rd(k){try{var r=localStorage.getItem(KEY+k);return r?JSON.parse(r):null}catch(e){return null}}
+function sv(){try{localStorage.setItem(KEY+S.key,JSON.stringify(S))}catch(e){}}
+function title(t){return t.replace(/\b\w/g,function(c){return c.toUpperCase()})}
+
+function home(msg){
+  app.innerHTML='<div class="c"><div class="big">🔥🧪🌡️</div><h1>Petualangan Kalor</h1>'+
+  '<p class="mu">Quiz IPA Kelas 7 SMP · 10 soal · mencari kalor (Q = m × c × ΔT)</p>'+
+  '<div style="background:var(--yl);border-radius:14px;padding:10px 14px;font-size:.92rem;margin:14px 0">⭐ Benar = <b>10 poin</b><br>🔥 Benar 3 kali beruntun = <b>bonus +5 poin</b><br>🔒 Setiap nama hanya bisa bermain <b>satu kali</b></div>'+
+  '<label for="nm"><b>✏️ Masukkan nama lengkapmu</b></label><input id="nm" maxlength="30" placeholder="Contoh: Budi Santoso" autocomplete="off">'+
+  '<div class="err" id="er">'+(msg||"")+'</div><button class="btn" id="go">🚀 Mulai Petualangan</button></div>';
+  var nm=document.getElementById("nm");
+  function go(){
+    var v=nm.value.replace(/\s+/g," ").trim(),e=document.getElementById("er");
+    if(!v){e.textContent="⚠️ Nama tidak boleh kosong.";return}
+    if(v.length<3){e.textContent="⚠️ Nama minimal 3 karakter.";return}
+    if(v.length>30){e.textContent="⚠️ Nama maksimal 30 karakter.";return}
+    if(!/^[A-Za-z\u00C0-\u024F][A-Za-z\u00C0-\u024F .'\-]*$/.test(v)){e.textContent="⚠️ Nama hanya boleh berisi huruf, spasi, titik, atau tanda hubung (tanpa angka dan simbol lain).";return}
+    if((v.match(/[A-Za-z\u00C0-\u024F]/g)||[]).length<3){e.textContent="⚠️ Nama harus memuat minimal 3 huruf.";return}
+    var key=v.toLowerCase(),old=rd(key);
+    if(old){S=old;if(S.done){render();return}render();return}
+    S={key:key,name:title(v),o:D.map(opts),a:[],i:0,st:0,bonus:0,done:false};sv();render();
+  }
+  document.getElementById("go").onclick=go;
+  nm.onkeydown=function(e){if(e.key==="Enter")go()};
+}
+
+function render(){if(!S)return home();if(S.done)return result();ask()}
+
+function ask(){
+  var i=S.i,d=D[i],r=calc(d),o=S.o[i],a=S.a[i],ans=a!==undefined;
+  var pts=S.a.reduce(function(s,x,k){return s+(x===calc(D[k]).q?10:0)},0)+S.bonus;
+  var h='<div class="c"><div class="top"><span>👤 '+esc(S.name)+'</span><span class="chip">⭐ '+pts+' poin</span>'+(S.st>=2?'<span class="chip">🔥 Beruntun '+S.st+'</span>':'')+'</div>'+
+  '<div class="bar"><i style="width:'+(i/D.length*100)+'%"></i></div><div class="mu" style="text-align:left">Soal '+(i+1)+' dari '+D.length+'</div>'+
+  '<div style="font-size:1.1rem;font-weight:700;margin-top:6px">'+d[0]+' Berapa kalor yang '+(r.cool?'<u>dilepaskan</u>':'<u>diserap</u>')+' oleh '+d[1].toLowerCase()+' berikut?</div>'+
+  '<div class="data"><div>⚖️ Massa<b>'+d[2]+' kg</b></div><div>🧪 Kalor jenis<b>'+f(d[4])+' J/kg°C</b></div><div>🌡️ Suhu awal<b>'+d[5]+' °C</b></div><div>'+(r.cool?'❄️':'🔥')+' Suhu akhir<b>'+d[6]+' °C</b></div></div>';
+  o.forEach(function(v,k){
+    var c="opt o"+k;
+    if(ans){if(v===r.q)c+=" good";else if(v===a)c+=" bad"}
+    h+='<button class="'+c+'" data-k="'+k+'" '+(ans?"disabled":"")+'>'+LET[k]+'. '+f(v)+' J'+(ans&&v===r.q?' ✅':ans&&v===a?' ❌':'')+'</button>';
+  });
+  if(ans){
+    var ok=a===r.q;
+    h+='<div class="fb '+(ok?'g':'r')+'">'+(ok?'🎉 <b>Hebat, benar!</b> +10 poin':'😅 <b>Belum tepat.</b> Jawaban benar: '+f(r.q)+' J')+
+    '<br>📝 ΔT = '+(r.cool?d[5]+' − '+d[6]:d[6]+' − '+d[5])+' = '+r.dt+' °C<br>Q = m × c × ΔT = '+d[2]+' × '+f(d[4])+' × '+r.dt+' = <b>'+f(r.q)+' J</b></div>'+
+    '<button class="btn" id="nx">'+(i===D.length-1?'🏁 Lihat Hasil Akhir':'➡️ Soal Berikutnya')+'</button>';
+  }
+  h+='</div>';
+  app.innerHTML=h;
+  Array.prototype.forEach.call(app.querySelectorAll(".opt"),function(b){b.onclick=function(){
+    var v=S.o[i][+b.dataset.k];S.a[i]=v;
+    if(v===r.q){S.st++;if(S.st>=3)S.bonus+=5}else S.st=0;
+    sv();ask();
+  }});
+  var nx=document.getElementById("nx");
+  if(nx)nx.onclick=function(){if(i===D.length-1)S.done=true;else S.i=i+1;sv();render();window.scrollTo(0,0)};
+}
+
+function result(){
+  var ok=0;D.forEach(function(d,i){if(S.a[i]===calc(d).q)ok++});
+  var sc=ok*10,tot=sc+S.bonus;
+  var lv=sc>=90?["🏆","Jagoan Kalor!","Luar biasa! Kamu menguasai perhitungan kalor dengan sangat baik."]:sc>=70?["🌟","Hebat!","Pemahamanmu sudah baik. Teliti lagi bagian ΔT agar nilainya makin sempurna."]:sc>=50?["👍","Lumayan!","Kamu sudah di jalur yang benar. Latih lagi cara mencari ΔT dan mengalikan m × c × ΔT."]:["💪","Tetap Semangat!","Pelajari lagi rumus Q = m × c × ΔT dan contoh soal, lalu tanyakan ke gurumu."];
+  var stars=sc>=90?"⭐⭐⭐":sc>=70?"⭐⭐":sc>=50?"⭐":"🌱";
+  var h='<div class="c" style="text-align:center"><div class="big">'+lv[0]+'</div><h1>'+lv[1]+'</h1><div class="mu">'+esc(S.name)+'</div>'+
+  '<div class="score">'+sc+'</div><div class="mu">Skor akhir (0–100) · '+stars+'</div>'+
+  '<div class="stats"><div>✅<b>'+ok+'</b>Benar</div><div>❌<b>'+(10-ok)+'</b>Salah</div><div>⭐<b>'+tot+'</b>Total poin</div></div>'+
+  '<p>'+lv[2]+'</p><div class="mu">Poin = '+sc+' (jawaban) + '+S.bonus+' (bonus beruntun)</div></div>';
+  h+='<div class="c"><h2 style="margin:0 0 6px">📋 Evaluasi jawabanmu</h2>';
+  D.forEach(function(d,i){
+    var r=calc(d),g=S.a[i]===r.q;
+    h+='<div class="li"><span>'+(g?'✅':'❌')+'</span><div><b>Soal '+(i+1)+' '+d[0]+' '+d[1]+'</b> – Q = '+d[2]+' × '+f(d[4])+' × '+r.dt+' = <b>'+f(r.q)+' J</b>'+(g?'':'<br><span style="color:var(--no)">Jawabanmu: '+f(S.a[i])+' J. '+(S.a[i]===d[3]*d[4]*d[6]?'Kamu memakai suhu akhir, padahal yang dipakai selisih suhu (ΔT).':'Periksa kembali perkalian dan jumlah angka nolnya.')+'</span>')+'</div></div>';
+  });
+  var tip=ok===10?"🎊 Semua benar! Pertahankan ketelitianmu.":"💡 Ingat: ΔT = suhu akhir − suhu awal (ambil nilai positifnya), lalu hitung Q = m × c × ΔT.";
+  h+='</div><div class="c" style="text-align:center">'+tip+'<div class="ref">🔒 Kuis untuk nama ini sudah selesai dan tidak dapat dimainkan lagi.</div></div>';
+  app.innerHTML=h;window.scrollTo(0,0);
+}
+home();
+</script>
+</body>
+</html>
